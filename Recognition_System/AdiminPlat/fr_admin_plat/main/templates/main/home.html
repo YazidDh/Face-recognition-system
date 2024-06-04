@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+{% block title %} Home page {% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <h1>User Table</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{user.username}}</td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <img src="{{ user.image.url }}" alt="images" class="img-thumbnail" style="max-width: 100px;"/>
+            
+              <form method="post">
+                {% csrf_token %}
+              <button
+              type="submit"
+              class="btn btn-danger"
+              name="user-id"
+              value="{{ user.id }}"
+            >
+              Delete
+            </button>
+            </form>
+            
+            </div>
+            
+          
+          
+          </td>
+         
+          <td> 
+           
+
+        </td>
+        </tr>
+        
+        {% empty %}
+        <p>No users yet :( </p>
+        {% endfor%}
+
+
+
+</tbody>
+</table>
+</div>
+{% endblock %}
